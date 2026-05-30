@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>추억의 복고풍 일력 제작소</title>
+  <!-- Google Fonts - 다양한 스타일의 한글 폰트 로드 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Black+Han+Sans&family=Dongle:wght@400;700&family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Jua&family=Nanum+Myeongjo:wght@400;700;800&family=Yeon+Sung&family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- html2pdf.js 및 html2canvas 라이브러리 (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- 좌측 사이드바: 설정 영역 (인쇄 시 숨김) -->
+    <aside class="control-panel no-print">
+      <div class="logo-area">
+        <span class="logo-emoji">📅</span>
+        <h2>추억의 일력 제작기</h2>
+        <p class="subtitle">나만의 빈티지 달력을 만들어 보세요</p>
+      </div>
+
+      <div class="control-group">
+        <h3>1. 날짜 및 내용 입력</h3>
+        <div class="input-item">
+          <label for="input-date">날짜 선택</label>
+          <input type="date" id="input-date" value="2026-05-25">
+        </div>
+        <div class="input-item">
+          <label for="input-text">하단 커스텀 문구</label>
+          <textarea id="input-text" rows="2" placeholder="예: 행복한 원주 가족">행복한 원주 가족</textarea>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <h3>2. 달력 디자인 설정</h3>
+        <div class="input-item">
+          <label for="color-theme">상단 띠 색상</label>
+          <div class="color-picker-wrapper">
+            <input type="color" id="color-theme" value="#98c9a3">
+            <span class="color-hex">#98c9a3</span>
+          </div>
+        </div>
+        <div class="input-item">
+          <label for="font-number">숫자 폰트</label>
+          <select id="font-number">
+            <option value="'Bagel Fat One', cursive" selected>바겔 팻 (매우 두껍고 둥금)</option>
+            <option value="'Jua', sans-serif">주아 (둥글고 레트로)</option>
+            <option value="'Black Han Sans', sans-serif">블랙한산스 (꽉 찬 볼드)</option>
+            <option value="'Gowun Batang', serif">고운바탕 (전통 활자)</option>
+            <option value="'Noto Sans KR', sans-serif">고딕 (깔끔함)</option>
+          </select>
+        </div>
+        <div class="input-item">
+          <label for="font-text">문구 폰트</label>
+          <select id="font-text">
+            <option value="'Yeon Sung', cursive" selected>연성 (붓글씨 느낌)</option>
+            <option value="'Gowun Batang', serif">고운바탕 (진중한 서체)</option>
+            <option value="'Jua', sans-serif">주아 (귀여운 레트로)</option>
+            <option value="'Dongle', sans-serif">동글 (얇고 귀여움)</option>
+            <option value="'Nanum Myeongjo', serif">나눔명조 (신문 서체)</option>
+          </select>
+        </div>
+        <div class="input-item">
+          <label for="size-number">숫자 크기</label>
+          <input type="range" id="size-number" min="150" max="320" value="230">
+        </div>
+        <div class="input-item">
+          <label for="size-text">문구 크기</label>
+          <input type="range" id="size-text" min="20" max="60" value="38">
+        </div>
+        <div class="input-item checkbox-item">
+          <input type="checkbox" id="toggle-texture" checked>
+          <label for="toggle-texture">종이 질감 필터 적용</label>
+        </div>
+        <div class="input-item checkbox-item">
+          <input type="checkbox" id="toggle-rip" checked>
+          <label for="toggle-rip">상단 찢어진 종이 효과</label>
+        </div>
+      </div>
+
+      <div class="control-group action-buttons">
+        <h3>3. 내보내기</h3>
+        <button id="btn-print" class="btn btn-primary">
+          <span class="icon">🖨️</span> A4 용지로 인쇄 (PDF 저장)
+        </button>
+        <button id="btn-pdf" class="btn btn-secondary">
+          <span class="icon">📄</span> 고화질 PDF 다운로드
+        </button>
+        <button id="btn-image" class="btn btn-secondary">
+          <span class="icon">🖼️</span> PNG 이미지로 다운로드
+        </button>
+      </div>
+
+      <div class="print-guide">
+        <h4>💡 인쇄 팁</h4>
+        <p>인쇄 팝업에서 **'배경 그래픽'** 옵션을 체크하셔야 종이 색상과 상단 띠 디자인이 정상적으로 인쇄됩니다.</p>
+      </div>
+    </aside>
+
+    <!-- 우측: 실시간 미리보기 영역 -->
+    <main class="preview-area">
+      <div class="preview-wrapper">
+        <!-- 인쇄 타겟 영역 (A4 비율 유지) -->
+        <div class="calendar-card" id="calendar-card">
+          <!-- 상단 찢어진 종이 질감 헤더 -->
+          <div class="calendar-header-rip" id="calendar-header-rip"></div>
+          
+          <!-- 상단 배경 색상 띠 -->
+          <div class="calendar-header-band" id="calendar-band"></div>
+          
+          <!-- 내지 영역 -->
+          <div class="calendar-inner-paper">
+            <!-- 빈티지 노이즈 오버레이 -->
+            <div class="paper-texture" id="paper-texture"></div>
+
+            <!-- 월 / 연도 / 요일 영역 -->
+            <div class="calendar-top">
+              <div class="month-box">
+                <span id="display-month">5月</span>
+              </div>
+              <div class="year-info">
+                <div id="display-year">2026年</div>
+                <div id="display-zodiac">(丙午年)</div>
+              </div>
+              <div class="day-of-week-box">
+                <span id="display-day-of-week">月</span>
+              </div>
+            </div>
+
+            <!-- 구분선 -->
+            <div class="calendar-divider"></div>
+
+            <!-- 메인 날짜 숫자 -->
+            <div class="calendar-date-container">
+              <span id="display-day">25</span>
+            </div>
+
+            <!-- 하단 문구 영역 -->
+            <div class="calendar-footer">
+              <span id="display-custom-text">행복한 원주 가족</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- JavaScript Entry Point -->
+  <script type="module" src="main.js"></script>
+</body>
+</html>
