@@ -22,10 +22,7 @@
     <main class="preview-area">
       <div class="preview-wrapper">
         <!-- 인쇄 타겟 영역 (A4 비율 유지) -->
-        <div class="calendar-card no-texture no-rip" id="calendar-card">
-          <!-- 상단 찢어진 종이 질감 헤더 -->
-          <div class="calendar-header-rip" id="calendar-header-rip"></div>
-          
+        <div class="calendar-card no-texture" id="calendar-card">
           <!-- 상단 배경 색상 띠 -->
           <div class="calendar-header-band" id="calendar-band"></div>
           
@@ -97,7 +94,7 @@
         <div class="input-item">
           <label for="font-number">숫자 및 헤더 폰트</label>
           <select id="font-number">
-            <option value="'HMFMold', sans-serif" selected>HMFMold (기본 - 일력체)</option>
+            <option value="'HMFMold', sans-serif" selected>휴먼옛체 (기본)</option>
             <option value="'Bagel Fat One', cursive">바겔 팻 (둥글고 두꺼움)</option>
             <option value="'Jua', sans-serif">주아 (둥글고 레트로)</option>
             <option value="'Black Han Sans', sans-serif">블랙한산스 (꽉 찬 볼드)</option>
@@ -108,7 +105,7 @@
         <div class="input-item">
           <label for="font-text">하단 문구 폰트</label>
           <select id="font-text">
-            <option value="'BMEuljiro', sans-serif" selected>배민 을지로체 (기본 - 붓글씨)</option>
+            <option value="'BMEuljiro', sans-serif" selected>배민을지로체 (기본)</option>
             <option value="'Yeon Sung', cursive">연성 (붓글씨 느낌)</option>
             <option value="'Gowun Batang', serif">고운바탕 (진중한 서체)</option>
             <option value="'Jua', sans-serif">주아 (귀여운 레트로)</option>
@@ -117,7 +114,7 @@
         </div>
         <div class="input-item">
           <label for="size-number">숫자 크기</label>
-          <input type="range" id="size-number" min="150" max="320" value="258">
+          <input type="range" id="size-number" min="200" max="400" value="312">
         </div>
         <div class="input-item">
           <label for="size-text">문구 크기</label>
@@ -126,10 +123,6 @@
         <div class="input-item checkbox-item">
           <input type="checkbox" id="toggle-texture">
           <label for="toggle-texture">종이 질감 필터 적용</label>
-        </div>
-        <div class="input-item checkbox-item">
-          <input type="checkbox" id="toggle-rip">
-          <label for="toggle-rip">상단 찢어진 종이 효과</label>
         </div>
       </div>
 

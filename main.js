@@ -35,7 +35,6 @@ const fontText = document.getElementById('font-text');
 const sizeNumber = document.getElementById('size-number');
 const sizeText = document.getElementById('size-text');
 const toggleTexture = document.getElementById('toggle-texture');
-const toggleRip = document.getElementById('toggle-rip');
 
 const calendarCard = document.getElementById('calendar-card');
 const calendarBand = document.getElementById('calendar-band');
@@ -127,14 +126,7 @@ function setupStyleListeners() {
     }
   });
 
-  // 찢어진 상단 효과 토글
-  toggleRip.addEventListener('change', (e) => {
-    if (e.target.checked) {
-      calendarCard.classList.remove('no-rip');
-    } else {
-      calendarCard.classList.add('no-rip');
-    }
-  });
+
 
   // 입력 감지
   inputDate.addEventListener('change', updateCalendar);

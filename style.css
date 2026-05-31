@@ -27,7 +27,7 @@
   --calendar-theme-color: #96c9a1; /* 이미지 예시 색상 */
   --calendar-num-font: 'HMFMold', sans-serif;
   --calendar-text-font: 'BMEuljiro', sans-serif;
-  --calendar-num-size: 43cqw; /* 이미지 비율에 맞춰 키움 */
+  --calendar-num-size: 52cqw; /* 이미지 비율에 맞춰 키움 */
   --calendar-text-size: 8cqw; /* 이미지 비율에 맞춰 키움 */
 }
 
@@ -334,30 +334,7 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-/* 상단 찢어진 느낌의 종이 질감 오버레이 */
-.calendar-header-rip {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2.2cqw;
-  background-color: #e5e3d9; /* 찢어진 단면 속지 색상 */
-  z-index: 5;
-  clip-path: polygon(
-    0% 100%, 
-    3% 40%, 6% 90%, 9% 30%, 12% 85%, 15% 35%, 18% 90%, 21% 40%, 24% 80%, 27% 30%, 30% 90%,
-    33% 45%, 36% 85%, 39% 35%, 42% 90%, 45% 40%, 48% 80%, 51% 30%, 54% 85%, 57% 35%, 60% 90%,
-    63% 40%, 66% 85%, 69% 30%, 72% 90%, 75% 45%, 78% 80%, 81% 35%, 84% 90%, 87% 40%, 90% 85%,
-    93% 30%, 96% 90%, 100% 40%, 
-    100% 0%, 0% 0%
-  );
-  box-shadow: inset 0 -1px 3px rgba(0,0,0,0.15);
-}
 
-/* 찢어진 효과가 꺼져있을 때 */
-.no-rip .calendar-header-rip {
-  display: none;
-}
 
 /* 상단 색상 띠 */
 .calendar-header-band {
