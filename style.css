@@ -1,3 +1,18 @@
+/* --- 로컬 폰트 로드 --- */
+@font-face {
+  font-family: 'BMEuljiro';
+  src: url('./fonts/BMEULJIRO.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HMFMold';
+  src: url('./fonts/HMFMOLD.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* --- 디자인 시스템 및 변수 설정 --- */
 :root {
   --bg-primary: #121214;
@@ -8,12 +23,12 @@
   --accent-hover: #4338ca;
   --border-color: rgba(255, 255, 255, 0.1);
   
-  /* 일력 기본 설정 (기본값) */
-  --calendar-theme-color: #98c9a3; /* 상단 띠 배경색 */
-  --calendar-num-font: 'Bagel Fat One', cursive;
-  --calendar-text-font: 'Yeon Sung', cursive;
-  --calendar-num-size: 38cqw; /* 기본 숫자 크기 */
-  --calendar-text-size: 7.5cqw; /* 기본 텍스트 크기 */
+  /* 일력 기본 설정 (기본값 - 사용자가 등록한 서체 기준) */
+  --calendar-theme-color: #96c9a1; /* 이미지 예시 색상 */
+  --calendar-num-font: 'HMFMold', sans-serif;
+  --calendar-text-font: 'BMEuljiro', sans-serif;
+  --calendar-num-size: 43cqw; /* 이미지 비율에 맞춰 키움 */
+  --calendar-text-size: 8cqw; /* 이미지 비율에 맞춰 키움 */
 }
 
 /* --- 초기화 및 공통 스타일 --- */
@@ -38,13 +53,13 @@ body {
   width: 100vw;
 }
 
-/* --- 좌측 제어판 (Sidebar) --- */
+/* --- 우측 제어판 (Sidebar) --- */
 .control-panel {
   width: 380px;
   background-color: var(--bg-sidebar);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-right: 1px solid var(--border-color);
+  border-left: 1px solid var(--border-color);
   padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
@@ -52,7 +67,7 @@ body {
   z-index: 10;
   overflow-y: auto;
   flex-shrink: 0;
-  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
 }
 
 /* 로고 영역 */
@@ -304,7 +319,7 @@ body {
 .calendar-card {
   width: min(85vw - 380px, 80vh * 0.707, 500px);
   aspect-ratio: 1 / 1.414;
-  background-color: #fbfaf5; /* 옛날 종이의 뽀얗고 미색이 감도는 톤 */
+  background-color: #ffffff; /* 예시 이미지와 동일하게 완전 흰색으로 수정 */
   border-radius: 4px;
   box-shadow: 
     0 30px 60px rgba(0, 0, 0, 0.35), 
@@ -359,7 +374,7 @@ body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  padding: 4.5cqw 5cqw 7cqw 5cqw;
+  padding: 4.5cqw 6cqw 7cqw 6cqw; /* 양 옆 여백을 6cqw로 약간 늘려 가독성 증대 */
   position: relative;
   z-index: 1;
 }
@@ -393,10 +408,10 @@ body {
 
 /* 월 박스 (좌) */
 .month-box {
-  width: 25cqw;
-  height: 13cqw;
-  border: 0.35cqw solid #000;
-  border-radius: 1.5cqw;
+  width: 27cqw;
+  height: 14.5cqw;
+  border: 0.3cqw solid #000; /* 선 굵기 조절 */
+  border-radius: 1.8cqw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -404,8 +419,8 @@ body {
 }
 
 .month-box span {
-  font-family: 'Gowun Batang', serif;
-  font-size: 6.8cqw;
+  font-family: 'HMFMold', sans-serif; /* 한자 및 숫자 폰트 HMFMold 지정 */
+  font-size: 7.2cqw;
   font-weight: 800;
   color: #000;
   line-height: 1;
@@ -413,10 +428,10 @@ body {
 
 /* 요일 박스 (우) */
 .day-of-week-box {
-  width: 25cqw;
-  height: 13cqw;
-  border: 0.35cqw solid #000;
-  border-radius: 1.5cqw;
+  width: 27cqw;
+  height: 14.5cqw;
+  border: 0.3cqw solid #000; /* 선 굵기 조절 */
+  border-radius: 1.8cqw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -424,8 +439,8 @@ body {
 }
 
 .day-of-week-box span {
-  font-family: 'Gowun Batang', serif;
-  font-size: 6.8cqw;
+  font-family: 'HMFMold', sans-serif; /* 한자 및 숫자 폰트 HMFMold 지정 */
+  font-size: 7.8cqw;
   font-weight: 800;
   color: #000;
   line-height: 1;
@@ -437,32 +452,34 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.5cqw;
+  gap: 0.2cqw;
   color: #000;
 }
 
 #display-year {
-  font-family: 'Gowun Batang', serif;
-  font-size: 5.5cqw;
+  font-family: 'HMFMold', sans-serif; /* 한자 및 숫자 폰트 HMFMold 지정 */
+  font-size: 6.8cqw;
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
 #display-zodiac {
-  font-family: 'Gowun Batang', serif;
-  font-size: 4cqw;
+  font-family: 'HMFMold', sans-serif; /* 한자 및 숫자 폰트 HMFMold 지정 */
+  font-size: 4.8cqw;
   font-weight: 700;
   line-height: 1;
 }
 
-/* 구분선 */
+/* 구분선 - 양 끝 가장자리에 정확히 닿도록 음수 마진 적용 */
 .calendar-divider {
-  width: 100%;
-  height: 0.35cqw;
+  width: auto;
+  height: 0.3cqw;
   background-color: #000;
+  margin-left: -6cqw;
+  margin-right: -6cqw;
   margin-top: 1.5cqw;
-  margin-bottom: 2cqw;
+  margin-bottom: 2.5cqw;
 }
 
 /* 중앙 큰 날짜 숫자 영역 */
@@ -579,7 +596,7 @@ body {
     box-shadow: none !important;
     border: none !important;
     border-radius: 0 !important;
-    background-color: #fbfaf5 !important;
+    background-color: #ffffff !important; /* 인쇄 시에도 완전히 백색으로 출력 */
     margin: 0 !important;
     page-break-inside: avoid;
     

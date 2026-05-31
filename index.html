@@ -18,97 +18,11 @@
 </head>
 <body>
   <div class="app-container">
-    <!-- 좌측 사이드바: 설정 영역 (인쇄 시 숨김) -->
-    <aside class="control-panel no-print">
-      <div class="logo-area">
-        <span class="logo-emoji">📅</span>
-        <h2>추억의 일력 제작기</h2>
-        <p class="subtitle">나만의 빈티지 달력을 만들어 보세요</p>
-      </div>
-
-      <div class="control-group">
-        <h3>1. 날짜 및 내용 입력</h3>
-        <div class="input-item">
-          <label for="input-date">날짜 선택</label>
-          <input type="date" id="input-date" value="2026-05-25">
-        </div>
-        <div class="input-item">
-          <label for="input-text">하단 커스텀 문구</label>
-          <textarea id="input-text" rows="2" placeholder="예: 행복한 원주 가족">행복한 원주 가족</textarea>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <h3>2. 달력 디자인 설정</h3>
-        <div class="input-item">
-          <label for="color-theme">상단 띠 색상</label>
-          <div class="color-picker-wrapper">
-            <input type="color" id="color-theme" value="#98c9a3">
-            <span class="color-hex">#98c9a3</span>
-          </div>
-        </div>
-        <div class="input-item">
-          <label for="font-number">숫자 폰트</label>
-          <select id="font-number">
-            <option value="'Bagel Fat One', cursive" selected>바겔 팻 (매우 두껍고 둥금)</option>
-            <option value="'Jua', sans-serif">주아 (둥글고 레트로)</option>
-            <option value="'Black Han Sans', sans-serif">블랙한산스 (꽉 찬 볼드)</option>
-            <option value="'Gowun Batang', serif">고운바탕 (전통 활자)</option>
-            <option value="'Noto Sans KR', sans-serif">고딕 (깔끔함)</option>
-          </select>
-        </div>
-        <div class="input-item">
-          <label for="font-text">문구 폰트</label>
-          <select id="font-text">
-            <option value="'Yeon Sung', cursive" selected>연성 (붓글씨 느낌)</option>
-            <option value="'Gowun Batang', serif">고운바탕 (진중한 서체)</option>
-            <option value="'Jua', sans-serif">주아 (귀여운 레트로)</option>
-            <option value="'Dongle', sans-serif">동글 (얇고 귀여움)</option>
-            <option value="'Nanum Myeongjo', serif">나눔명조 (신문 서체)</option>
-          </select>
-        </div>
-        <div class="input-item">
-          <label for="size-number">숫자 크기</label>
-          <input type="range" id="size-number" min="150" max="320" value="230">
-        </div>
-        <div class="input-item">
-          <label for="size-text">문구 크기</label>
-          <input type="range" id="size-text" min="20" max="60" value="38">
-        </div>
-        <div class="input-item checkbox-item">
-          <input type="checkbox" id="toggle-texture" checked>
-          <label for="toggle-texture">종이 질감 필터 적용</label>
-        </div>
-        <div class="input-item checkbox-item">
-          <input type="checkbox" id="toggle-rip" checked>
-          <label for="toggle-rip">상단 찢어진 종이 효과</label>
-        </div>
-      </div>
-
-      <div class="control-group action-buttons">
-        <h3>3. 내보내기</h3>
-        <button id="btn-print" class="btn btn-primary">
-          <span class="icon">🖨️</span> A4 용지로 인쇄 (PDF 저장)
-        </button>
-        <button id="btn-pdf" class="btn btn-secondary">
-          <span class="icon">📄</span> 고화질 PDF 다운로드
-        </button>
-        <button id="btn-image" class="btn btn-secondary">
-          <span class="icon">🖼️</span> PNG 이미지로 다운로드
-        </button>
-      </div>
-
-      <div class="print-guide">
-        <h4>💡 인쇄 팁</h4>
-        <p>인쇄 팝업에서 **'배경 그래픽'** 옵션을 체크하셔야 종이 색상과 상단 띠 디자인이 정상적으로 인쇄됩니다.</p>
-      </div>
-    </aside>
-
-    <!-- 우측: 실시간 미리보기 영역 -->
+    <!-- 좌측: 실시간 미리보기 영역 -->
     <main class="preview-area">
       <div class="preview-wrapper">
         <!-- 인쇄 타겟 영역 (A4 비율 유지) -->
-        <div class="calendar-card" id="calendar-card">
+        <div class="calendar-card no-texture no-rip" id="calendar-card">
           <!-- 상단 찢어진 종이 질감 헤더 -->
           <div class="calendar-header-rip" id="calendar-header-rip"></div>
           
@@ -150,6 +64,93 @@
         </div>
       </div>
     </main>
+
+    <!-- 우측 사이드바: 설정 영역 (인쇄 시 숨김) -->
+    <aside class="control-panel no-print">
+      <div class="logo-area">
+        <span class="logo-emoji">📅</span>
+        <h2>추억의 일력 제작기</h2>
+        <p class="subtitle">나만의 빈티지 달력을 만들어 보세요</p>
+      </div>
+
+      <div class="control-group">
+        <h3>1. 날짜 및 내용 입력</h3>
+        <div class="input-item">
+          <label for="input-date">날짜 선택</label>
+          <input type="date" id="input-date" value="2026-05-25">
+        </div>
+        <div class="input-item">
+          <label for="input-text">하단 커스텀 문구</label>
+          <textarea id="input-text" rows="2" placeholder="예: 행복한 원주 가족">행복한 원주 가족</textarea>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <h3>2. 달력 디자인 설정</h3>
+        <div class="input-item">
+          <label for="color-theme">상단 띠 색상</label>
+          <div class="color-picker-wrapper">
+            <input type="color" id="color-theme" value="#96c9a1">
+            <span class="color-hex">#96c9a1</span>
+          </div>
+        </div>
+        <div class="input-item">
+          <label for="font-number">숫자 및 헤더 폰트</label>
+          <select id="font-number">
+            <option value="'HMFMold', sans-serif" selected>HMFMold (기본 - 일력체)</option>
+            <option value="'Bagel Fat One', cursive">바겔 팻 (둥글고 두꺼움)</option>
+            <option value="'Jua', sans-serif">주아 (둥글고 레트로)</option>
+            <option value="'Black Han Sans', sans-serif">블랙한산스 (꽉 찬 볼드)</option>
+            <option value="'Gowun Batang', serif">고운바탕 (전통 활자)</option>
+            <option value="'Noto Sans KR', sans-serif">고딕 (깔끔함)</option>
+          </select>
+        </div>
+        <div class="input-item">
+          <label for="font-text">하단 문구 폰트</label>
+          <select id="font-text">
+            <option value="'BMEuljiro', sans-serif" selected>배민 을지로체 (기본 - 붓글씨)</option>
+            <option value="'Yeon Sung', cursive">연성 (붓글씨 느낌)</option>
+            <option value="'Gowun Batang', serif">고운바탕 (진중한 서체)</option>
+            <option value="'Jua', sans-serif">주아 (귀여운 레트로)</option>
+            <option value="'Nanum Myeongjo', serif">나눔명조 (신문 서체)</option>
+          </select>
+        </div>
+        <div class="input-item">
+          <label for="size-number">숫자 크기</label>
+          <input type="range" id="size-number" min="150" max="320" value="258">
+        </div>
+        <div class="input-item">
+          <label for="size-text">문구 크기</label>
+          <input type="range" id="size-text" min="20" max="60" value="40">
+        </div>
+        <div class="input-item checkbox-item">
+          <input type="checkbox" id="toggle-texture">
+          <label for="toggle-texture">종이 질감 필터 적용</label>
+        </div>
+        <div class="input-item checkbox-item">
+          <input type="checkbox" id="toggle-rip">
+          <label for="toggle-rip">상단 찢어진 종이 효과</label>
+        </div>
+      </div>
+
+      <div class="control-group action-buttons">
+        <h3>3. 내보내기</h3>
+        <button id="btn-print" class="btn btn-primary">
+          <span class="icon">🖨️</span> A4 용지로 인쇄 (PDF 저장)
+        </button>
+        <button id="btn-pdf" class="btn btn-secondary">
+          <span class="icon">📄</span> 고화질 PDF 다운로드
+        </button>
+        <button id="btn-image" class="btn btn-secondary">
+          <span class="icon">🖼️</span> PNG 이미지로 다운로드
+        </button>
+      </div>
+
+      <div class="print-guide">
+        <h4>💡 인쇄 팁</h4>
+        <p>인쇄 팝업에서 **'배경 그래픽'** 옵션을 체크하셔야 종이 색상과 상단 띠 디자인이 정상적으로 인쇄됩니다.</p>
+      </div>
+    </aside>
   </div>
 
   <!-- JavaScript Entry Point -->
