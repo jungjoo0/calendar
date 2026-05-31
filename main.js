@@ -34,6 +34,8 @@ const fontNumber = document.getElementById('font-number');
 const fontText = document.getElementById('font-text');
 const sizeNumber = document.getElementById('size-number');
 const sizeText = document.getElementById('size-text');
+const sizeBorder = document.getElementById('size-border');
+const spacingText = document.getElementById('spacing-text');
 const toggleTexture = document.getElementById('toggle-texture');
 
 const calendarCard = document.getElementById('calendar-card');
@@ -115,6 +117,16 @@ function setupStyleListeners() {
   sizeText.addEventListener('input', (e) => {
     const cqwVal = (e.target.value / 5).toFixed(1) + 'cqw';
     document.documentElement.style.setProperty('--calendar-text-size', cqwVal);
+  });
+
+  sizeBorder.addEventListener('input', (e) => {
+    const cqwVal = (e.target.value / 10).toFixed(1) + 'cqw';
+    document.documentElement.style.setProperty('--calendar-border-width', cqwVal);
+  });
+
+  spacingText.addEventListener('input', (e) => {
+    const emVal = (e.target.value / 100).toFixed(2) + 'em';
+    document.documentElement.style.setProperty('--calendar-text-spacing', emVal);
   });
 
   // 종이 질감 토글
@@ -218,8 +230,12 @@ function init() {
   // 크기 슬라이더 값에 대응하는 기본 CSS 변수값 초기 설정
   const numCqw = (sizeNumber.value / 6).toFixed(1) + 'cqw';
   const textCqw = (sizeText.value / 5).toFixed(1) + 'cqw';
+  const borderCqw = (sizeBorder.value / 10).toFixed(1) + 'cqw';
+  const spacingEm = (spacingText.value / 100).toFixed(2) + 'em';
   document.documentElement.style.setProperty('--calendar-num-size', numCqw);
   document.documentElement.style.setProperty('--calendar-text-size', textCqw);
+  document.documentElement.style.setProperty('--calendar-border-width', borderCqw);
+  document.documentElement.style.setProperty('--calendar-text-spacing', spacingEm);
   
   // 첫 화면 로드
   updateCalendar();

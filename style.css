@@ -22,13 +22,18 @@
   --accent-color: #4f46e5;
   --accent-hover: #4338ca;
   --border-color: rgba(255, 255, 255, 0.1);
-  
+
   /* 일력 기본 설정 (기본값 - 사용자가 등록한 서체 기준) */
-  --calendar-theme-color: #96c9a1; /* 이미지 예시 색상 */
+  --calendar-theme-color: #96c9a1;
+  /* 이미지 예시 색상 */
   --calendar-num-font: 'HMFMold', sans-serif;
   --calendar-text-font: 'BMEuljiro', sans-serif;
-  --calendar-num-size: 60cqw; /* 이미지 비율에 맞춰 키움 */
-  --calendar-text-size: 8cqw; /* 이미지 비율에 맞춰 키움 */
+  --calendar-num-size: 70cqw;
+  /* 이미지 비율에 맞춰 키움 */
+  --calendar-text-size: 10cqw;
+  /* 이미지 비율에 맞춰 키움 */
+  --calendar-border-width: 0.6cqw;
+  --calendar-text-spacing: 0em;
 }
 
 /* --- 초기화 및 공통 스타일 --- */
@@ -60,53 +65,36 @@ body {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-left: 1px solid var(--border-color);
-  padding: 2.5rem 2rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
   z-index: 10;
   overflow-y: auto;
   flex-shrink: 0;
   box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
 }
 
-/* 로고 영역 */
-.logo-area {
+/* 컴팩트 로고 영역 */
+.logo-area-compact {
   text-align: center;
   border-bottom: 1px solid var(--border-color);
-  padding-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
-.logo-emoji {
-  font-size: 2.5rem;
-  display: inline-block;
-  margin-bottom: 0.5rem;
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-.logo-area h2 {
-  font-size: 1.5rem;
+.logo-area-compact h2 {
+  font-size: 1.1rem;
   font-weight: 700;
   color: #fff;
-  letter-spacing: -0.05em;
-}
-
-.logo-area .subtitle {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-top: 0.25rem;
+  letter-spacing: -0.03em;
 }
 
 /* 컨트롤 그룹 */
 .control-group {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 0.75rem;
 }
 
 .control-group h3 {
@@ -121,29 +109,39 @@ body {
 .input-item {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.35rem;
 }
 
 .input-item label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--text-light);
 }
 
 .input-item input[type="date"],
+.input-item input[type="text"],
 .input-item select,
 .input-item textarea {
   background-color: rgba(0, 0, 0, 0.3);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   color: #fff;
-  padding: 0.75rem;
-  font-size: 0.9rem;
+  padding: 0.55rem 0.65rem;
+  font-size: 0.85rem;
   font-family: inherit;
   transition: all 0.2s ease;
 }
 
+.input-item textarea {
+  resize: none;
+  height: 42px;
+  line-height: 1.25;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+
 .input-item input[type="date"]:focus,
+.input-item input[type="text"]:focus,
 .input-item select:focus,
 .input-item textarea:focus {
   outline: none;
@@ -161,8 +159,8 @@ body {
 .input-item input[type="color"] {
   -webkit-appearance: none;
   border: none;
-  width: 42px;
-  height: 42px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   cursor: pointer;
   background: none;
@@ -289,14 +287,60 @@ body {
   line-height: 1.4;
 }
 
+/* --- 가로 배치 및 버튼 컴팩트 스타일 --- */
+.input-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.input-row .input-item {
+  flex: 1;
+}
+
+.input-row .input-item.flex-1 {
+  flex: 1;
+}
+
+.input-row .input-item.flex-2 {
+  flex: 2;
+}
+
+.input-row.align-center {
+  align-items: center;
+}
+
+.slider-item {
+  gap: 0.25rem;
+}
+
+.btn-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-group .btn {
+  flex: 1;
+}
+
+.action-buttons-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.action-buttons-compact .btn {
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+}
+
 /* --- 우측 미리보기 영역 (Preview Area) --- */
 .preview-area {
   flex-grow: 1;
   background-color: #1a1a20;
   /* 실제 벽에 걸려있는 느낌을 주기 위해 벽 느낌의 따뜻한 배경 설정 */
-  background-image: 
+  background-image:
     radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 80%),
-    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -319,19 +363,26 @@ body {
 .calendar-card {
   width: min(85vw - 380px, 80vh * 0.707, 500px);
   aspect-ratio: 1 / 1.414;
-  background-color: #ffffff; /* 예시 이미지와 동일하게 완전 흰색으로 수정 */
+  background-color: #ffffff;
+  /* 예시 이미지와 동일하게 완전 흰색으로 수정 */
   border-radius: 4px;
-  box-shadow: 
-    0 30px 60px rgba(0, 0, 0, 0.35), 
-    0 10px 25px rgba(0, 0, 0, 0.2), 
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.35),
+    0 10px 25px rgba(0, 0, 0, 0.2),
     0 1px 3px rgba(0, 0, 0, 0.1);
   position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  container-type: inline-size; /* 컨테이너 쿼리 활성화 */
-  transition: transform 0.3s ease;
+  container-type: inline-size;
+  /* 컨테이너 쿼리 활성화 */
+  transition: background-color 0.3s ease, transform 0.3s ease;
   border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* 텍스처 적용 시 일력 카드 배경을 부드러운 빈티지 미색으로 변경 */
+.calendar-card:not(.no-texture) {
+  background-color: #fbf8f3;
 }
 
 
@@ -351,12 +402,13 @@ body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  padding: 4.5cqw 6cqw 7cqw 6cqw; /* 양 옆 여백을 6cqw로 약간 늘려 가독성 증대 */
+  padding: 1.5cqw 4cqw 4cqw 4cqw;
+  /* 양 옆 여백을 6cqw로 약간 늘려 가독성 증대 */
   position: relative;
   z-index: 1;
 }
 
-/* 종이 오그라짐/그레인 텍스처 (SVG 노이즈 활용) */
+/* 종이 오그라짐/그레인 텍스처 (SVG 노이즈 및 에이징 필터 활용) */
 .paper-texture {
   position: absolute;
   top: 0;
@@ -367,7 +419,13 @@ body {
   z-index: 10;
   opacity: 1;
   mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+  background-image:
+    /* 외곽을 더 에이징된 느낌으로 만들어주는 그라데이션 */
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.3) 20%, rgba(230, 218, 196, 0.55) 100%),
+    /* 큰 종이 결/섬유 텍스처 (연한 구김/섬유 느낌) */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperFibers'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperFibers)' opacity='0.12'/%3E%3C/svg%3E"),
+    /* 미세한 모래알/입자 빈티지 노이즈 */
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 150 150' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grainNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grainNoise)' opacity='0.09'/%3E%3C/svg%3E");
 }
 
 .no-texture .paper-texture {
@@ -381,13 +439,16 @@ body {
   align-items: center;
   height: 20cqw;
   position: relative;
+  margin-left: -2cqw;
+  margin-right: -2cqw;
 }
 
 /* 월 박스 (좌) */
 .month-box {
-  width: 29cqw;
+  width: 25cqw;
   height: 16cqw;
-  border: 0.8cqw solid #000; /* 선 굵기 조절 */
+  border: var(--calendar-border-width) solid #000;
+  /* 선 굵기 조절 */
   border-radius: 1.8cqw;
   display: flex;
   align-items: center;
@@ -396,7 +457,8 @@ body {
 }
 
 .month-box span {
-  font-family: 'HMFMold', sans-serif; /* 한자 및 숫자 폰트 HMFMold 지정 */
+  font-family: 'HMFMold', sans-serif;
+  /* 한자 및 숫자 폰트 HMFMold 지정 */
   font-size: 9cqw;
   font-weight: 800;
   color: #000;
@@ -405,9 +467,10 @@ body {
 
 /* 요일 박스 (우) */
 .day-of-week-box {
-  width: 29cqw;
+  width: 25cqw;
   height: 16cqw;
-  border: 0.8cqw solid #000; /* 선 굵기 조절 */
+  border: var(--calendar-border-width) solid #000;
+  /* 선 굵기 조절 */
   border-radius: 1.8cqw;
   display: flex;
   align-items: center;
@@ -416,7 +479,8 @@ body {
 }
 
 .day-of-week-box span {
-  font-family: 'HMFMold', sans-serif; /* 한자 및 숫자 폰트 HMFMold 지정 */
+  font-family: 'HMFMold', sans-serif;
+  /* 한자 및 숫자 폰트 HMFMold 지정 */
   font-size: 9.5cqw;
   font-weight: 800;
   color: #000;
@@ -434,15 +498,17 @@ body {
 }
 
 #display-year {
-  font-family: 'HMFMold', sans-serif; /* 한자 및 숫자 폰트 HMFMold 지정 */
-  font-size: 8.5cqw;
+  font-family: 'HMFMold', sans-serif;
+  /* 한자 및 숫자 폰트 HMFMold 지정 */
+  font-size: 10.5cqw;
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
 #display-zodiac {
-  font-family: 'HMFMold', sans-serif; /* 한자 및 숫자 폰트 HMFMold 지정 */
+  font-family: 'HMFMold', sans-serif;
+  /* 한자 및 숫자 폰트 HMFMold 지정 */
   font-size: 5.8cqw;
   font-weight: 700;
   line-height: 1;
@@ -451,7 +517,7 @@ body {
 /* 구분선 - 양 끝 가장자리에 정확히 닿도록 음수 마진 적용 */
 .calendar-divider {
   width: auto;
-  height: 0.8cqw;
+  height: var(--calendar-border-width);
   background-color: #000;
   margin-left: -6cqw;
   margin-right: -6cqw;
@@ -465,7 +531,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2cqw;
   position: relative;
 }
 
@@ -496,9 +561,12 @@ body {
   font-size: var(--calendar-text-size);
   color: #000;
   line-height: 1.25;
-  white-space: pre-wrap; /* 줄바꿈 허용 */
-  word-break: keep-all; /* 단어 단위 줄바꿈 */
-  transition: font-family 0.2s ease, font-size 0.1s ease;
+  letter-spacing: var(--calendar-text-spacing);
+  white-space: pre-wrap;
+  /* 줄바꿈 허용 */
+  word-break: keep-all;
+  /* 단어 단위 줄바꿈 */
+  transition: font-family 0.2s ease, font-size 0.1s ease, letter-spacing 0.1s ease;
 }
 
 /* --- 반응형 스크린 설정 (태블릿/모바일) --- */
@@ -506,7 +574,7 @@ body {
   .app-container {
     flex-direction: column;
   }
-  
+
   .control-panel {
     width: 100%;
     height: auto;
@@ -514,12 +582,12 @@ body {
     border-bottom: 1px solid var(--border-color);
     padding: 1.5rem;
   }
-  
+
   .preview-area {
     height: 70vh;
     padding: 1.5rem;
   }
-  
+
   .calendar-card {
     width: min(85vw, 65vh * 0.707, 420px);
   }
@@ -573,10 +641,11 @@ body {
     box-shadow: none !important;
     border: none !important;
     border-radius: 0 !important;
-    background-color: #ffffff !important; /* 인쇄 시에도 완전히 백색으로 출력 */
+    background-color: #ffffff !important;
+    /* 인쇄 시에도 완전히 백색으로 출력 */
     margin: 0 !important;
     page-break-inside: avoid;
-    
+
     /* 인쇄 시 컨테이너 쿼리가 210mm 기준으로 자동 작동 */
   }
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,18 @@
   <!-- Google Fonts - 다양한 스타일의 한글 폰트 로드 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Black+Han+Sans&family=Dongle:wght@400;700&family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Jua&family=Nanum+Myeongjo:wght@400;700;800&family=Yeon+Sung&family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Black+Han+Sans&family=Dongle:wght@400;700&family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Jua&family=Nanum+Myeongjo:wght@400;700;800&family=Yeon+Sung&family=Noto+Sans+KR:wght@300;400;700;900&display=swap"
+    rel="stylesheet">
+
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="style.css">
-  
+
   <!-- html2pdf.js 및 html2canvas 라이브러리 (CDN) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
+
 <body>
   <div class="app-container">
     <!-- 좌측: 실시간 미리보기 영역 -->
@@ -25,7 +29,7 @@
         <div class="calendar-card no-texture" id="calendar-card">
           <!-- 상단 배경 색상 띠 -->
           <div class="calendar-header-band" id="calendar-band"></div>
-          
+
           <!-- 내지 영역 -->
           <div class="calendar-inner-paper">
             <!-- 빈티지 노이즈 오버레이 -->
@@ -55,7 +59,7 @@
 
             <!-- 하단 문구 영역 -->
             <div class="calendar-footer">
-              <span id="display-custom-text">행복한 원주 가족</span>
+              <span id="display-custom-text">행복한 우빈 가족</span>
             </div>
           </div>
         </div>
@@ -64,84 +68,101 @@
 
     <!-- 우측 사이드바: 설정 영역 (인쇄 시 숨김) -->
     <aside class="control-panel no-print">
-      <div class="logo-area">
-        <span class="logo-emoji">📅</span>
-        <h2>추억의 일력 제작기</h2>
-        <p class="subtitle">나만의 빈티지 달력을 만들어 보세요</p>
+      <!-- 컴팩트한 타이틀 -->
+      <div class="logo-area-compact">
+        <h2>📅 추억의 일력 제작기</h2>
       </div>
 
+      <!-- 입력 그룹: 컴팩트한 배치 -->
       <div class="control-group">
-        <h3>1. 날짜 및 내용 입력</h3>
-        <div class="input-item">
-          <label for="input-date">날짜 선택</label>
-          <input type="date" id="input-date" value="2026-05-25">
-        </div>
-        <div class="input-item">
-          <label for="input-text">하단 커스텀 문구</label>
-          <textarea id="input-text" rows="2" placeholder="예: 행복한 원주 가족">행복한 원주 가족</textarea>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <h3>2. 달력 디자인 설정</h3>
-        <div class="input-item">
-          <label for="color-theme">상단 띠 색상</label>
-          <div class="color-picker-wrapper">
-            <input type="color" id="color-theme" value="#96c9a1">
-            <span class="color-hex">#96c9a1</span>
+        <div class="input-row">
+          <div class="input-item flex-1">
+            <label for="input-date">날짜 선택</label>
+            <input type="date" id="input-date" value="2026-05-25">
+          </div>
+          <div class="input-item flex-2">
+            <label for="input-text">하단 커스텀 문구</label>
+            <textarea id="input-text" rows="1" placeholder="예: 행복한 우빈 가족">행복한 우빈 가족</textarea>
           </div>
         </div>
-        <div class="input-item">
-          <label for="font-number">숫자 및 헤더 폰트</label>
-          <select id="font-number">
-            <option value="'HMFMold', sans-serif" selected>휴먼옛체 (기본)</option>
-            <option value="'Bagel Fat One', cursive">바겔 팻 (둥글고 두꺼움)</option>
-            <option value="'Jua', sans-serif">주아 (둥글고 레트로)</option>
-            <option value="'Black Han Sans', sans-serif">블랙한산스 (꽉 찬 볼드)</option>
-            <option value="'Gowun Batang', serif">고운바탕 (전통 활자)</option>
-            <option value="'Noto Sans KR', sans-serif">고딕 (깔끔함)</option>
-          </select>
+
+        <!-- 폰트 선택 그룹 (가로 배치) -->
+        <div class="input-row">
+          <div class="input-item">
+            <label for="font-number">숫자/헤더 폰트</label>
+            <select id="font-number">
+              <option value="'HMFMold', sans-serif" selected>휴먼옛체 (기본)</option>
+              <option value="'Bagel Fat One', cursive">바겔 팻</option>
+              <option value="'Jua', sans-serif">주아 (레트로)</option>
+              <option value="'Black Han Sans', sans-serif">블랙한산스</option>
+              <option value="'Gowun Batang', serif">고운바탕</option>
+              <option value="'Noto Sans KR', sans-serif">고딕</option>
+            </select>
+          </div>
+          <div class="input-item">
+            <label for="font-text">하단 문구 폰트</label>
+            <select id="font-text">
+              <option value="'BMEuljiro', sans-serif" selected>배민을지로체</option>
+              <option value="'Yeon Sung', cursive">연성 (붓글씨)</option>
+              <option value="'Gowun Batang', serif">고운바탕</option>
+              <option value="'Jua', sans-serif">주아 (레트로)</option>
+              <option value="'Nanum Myeongjo', serif">나눔명조</option>
+            </select>
+          </div>
         </div>
-        <div class="input-item">
-          <label for="font-text">하단 문구 폰트</label>
-          <select id="font-text">
-            <option value="'BMEuljiro', sans-serif" selected>배민을지로체 (기본)</option>
-            <option value="'Yeon Sung', cursive">연성 (붓글씨 느낌)</option>
-            <option value="'Gowun Batang', serif">고운바탕 (진중한 서체)</option>
-            <option value="'Jua', sans-serif">주아 (귀여운 레트로)</option>
-            <option value="'Nanum Myeongjo', serif">나눔명조 (신문 서체)</option>
-          </select>
+
+        <!-- 색상 및 텍스처 토글 (가로 배치) -->
+        <div class="input-row align-center">
+          <div class="input-item">
+            <label for="color-theme">상단 띠 색상</label>
+            <div class="color-picker-wrapper">
+              <input type="color" id="color-theme" value="#96c9a1">
+              <span class="color-hex">#96C9A1</span>
+            </div>
+          </div>
+          <div class="input-item checkbox-item">
+            <input type="checkbox" id="toggle-texture">
+            <label for="toggle-texture">종이 질감 필터</label>
+          </div>
         </div>
-        <div class="input-item">
-          <label for="size-number">숫자 크기</label>
-          <input type="range" id="size-number" min="200" max="400" value="360">
+
+        <!-- 크기 및 두께/자간 슬라이더들 (컴팩트 가로 배치) -->
+        <div class="input-row">
+          <div class="input-item slider-item">
+            <label for="size-number">숫자 크기</label>
+            <input type="range" id="size-number" min="200" max="640" value="420">
+          </div>
+          <div class="input-item slider-item">
+            <label for="size-text">문구 크기</label>
+            <input type="range" id="size-text" min="20" max="80" value="50">
+          </div>
         </div>
-        <div class="input-item">
-          <label for="size-text">문구 크기</label>
-          <input type="range" id="size-text" min="20" max="60" value="40">
-        </div>
-        <div class="input-item checkbox-item">
-          <input type="checkbox" id="toggle-texture">
-          <label for="toggle-texture">종이 질감 필터 적용</label>
+
+        <div class="input-row">
+          <div class="input-item slider-item">
+            <label for="size-border">테두리/선 두께</label>
+            <input type="range" id="size-border" min="1" max="11" value="6">
+          </div>
+          <div class="input-item slider-item">
+            <label for="spacing-text">문구 자간</label>
+            <input type="range" id="spacing-text" min="-10" max="20" value="0">
+          </div>
         </div>
       </div>
 
-      <div class="control-group action-buttons">
-        <h3>3. 내보내기</h3>
+      <!-- 내보내기 버튼 그룹 -->
+      <div class="control-group action-buttons-compact">
         <button id="btn-print" class="btn btn-primary">
-          <span class="icon">🖨️</span> A4 용지로 인쇄 (PDF 저장)
+          <span class="icon">🖨️</span> A4 용지 인쇄 (PDF 저장)
         </button>
-        <button id="btn-pdf" class="btn btn-secondary">
-          <span class="icon">📄</span> 고화질 PDF 다운로드
-        </button>
-        <button id="btn-image" class="btn btn-secondary">
-          <span class="icon">🖼️</span> PNG 이미지로 다운로드
-        </button>
-      </div>
-
-      <div class="print-guide">
-        <h4>💡 인쇄 팁</h4>
-        <p>인쇄 팝업에서 **'배경 그래픽'** 옵션을 체크하셔야 종이 색상과 상단 띠 디자인이 정상적으로 인쇄됩니다.</p>
+        <div class="btn-group">
+          <button id="btn-pdf" class="btn btn-secondary">
+            <span class="icon">📄</span> PDF 저장
+          </button>
+          <button id="btn-image" class="btn btn-secondary">
+            <span class="icon">🖼️</span> PNG 저장
+          </button>
+        </div>
       </div>
     </aside>
   </div>
@@ -149,4 +170,5 @@
   <!-- JavaScript Entry Point -->
   <script type="module" src="main.js"></script>
 </body>
+
 </html>
