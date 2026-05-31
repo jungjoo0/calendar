@@ -27,7 +27,7 @@
   --calendar-theme-color: #96c9a1; /* 이미지 예시 색상 */
   --calendar-num-font: 'HMFMold', sans-serif;
   --calendar-text-font: 'BMEuljiro', sans-serif;
-  --calendar-num-size: 52cqw; /* 이미지 비율에 맞춰 키움 */
+  --calendar-num-size: 60cqw; /* 이미지 비율에 맞춰 키움 */
   --calendar-text-size: 8cqw; /* 이미지 비율에 맞춰 키움 */
 }
 
@@ -379,15 +379,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 18cqw;
+  height: 20cqw;
   position: relative;
 }
 
 /* 월 박스 (좌) */
 .month-box {
-  width: 27cqw;
-  height: 14.5cqw;
-  border: 0.3cqw solid #000; /* 선 굵기 조절 */
+  width: 29cqw;
+  height: 16cqw;
+  border: 0.8cqw solid #000; /* 선 굵기 조절 */
   border-radius: 1.8cqw;
   display: flex;
   align-items: center;
@@ -397,7 +397,7 @@ body {
 
 .month-box span {
   font-family: 'HMFMold', sans-serif; /* 한자 및 숫자 폰트 HMFMold 지정 */
-  font-size: 7.2cqw;
+  font-size: 9cqw;
   font-weight: 800;
   color: #000;
   line-height: 1;
@@ -405,9 +405,9 @@ body {
 
 /* 요일 박스 (우) */
 .day-of-week-box {
-  width: 27cqw;
-  height: 14.5cqw;
-  border: 0.3cqw solid #000; /* 선 굵기 조절 */
+  width: 29cqw;
+  height: 16cqw;
+  border: 0.8cqw solid #000; /* 선 굵기 조절 */
   border-radius: 1.8cqw;
   display: flex;
   align-items: center;
@@ -417,7 +417,7 @@ body {
 
 .day-of-week-box span {
   font-family: 'HMFMold', sans-serif; /* 한자 및 숫자 폰트 HMFMold 지정 */
-  font-size: 7.8cqw;
+  font-size: 9.5cqw;
   font-weight: 800;
   color: #000;
   line-height: 1;
@@ -435,7 +435,7 @@ body {
 
 #display-year {
   font-family: 'HMFMold', sans-serif; /* 한자 및 숫자 폰트 HMFMold 지정 */
-  font-size: 6.8cqw;
+  font-size: 8.5cqw;
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -443,7 +443,7 @@ body {
 
 #display-zodiac {
   font-family: 'HMFMold', sans-serif; /* 한자 및 숫자 폰트 HMFMold 지정 */
-  font-size: 4.8cqw;
+  font-size: 5.8cqw;
   font-weight: 700;
   line-height: 1;
 }
@@ -451,7 +451,7 @@ body {
 /* 구분선 - 양 끝 가장자리에 정확히 닿도록 음수 마진 적용 */
 .calendar-divider {
   width: auto;
-  height: 0.3cqw;
+  height: 0.8cqw;
   background-color: #000;
   margin-left: -6cqw;
   margin-right: -6cqw;
