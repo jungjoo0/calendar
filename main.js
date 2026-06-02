@@ -66,25 +66,10 @@ function updateCalendar() {
   displayDay.textContent = day;
   displayCustomText.textContent = inputText.value;
 
-  // 2. 요일에 따른 상단 띠 배경색 테마 자동 업데이트
-  let activeColor = colorTheme.value;
-  if (dayOfWeek === 0) {
-    // 일요일은 빨간색 테마
-    activeColor = '#d9534f';
-  } else if (dayOfWeek === 6) {
-    // 토요일은 파란색 테마
-    activeColor = '#4a90e2';
-  }
-  
-  // CSS 변수 적용
+  // 2. 상단 띠 배경색 테마 업데이트
+  const activeColor = colorTheme.value;
   document.documentElement.style.setProperty('--calendar-theme-color', activeColor);
-  
-  // 색상 선택 도구 값도 요일에 맞게 임시 표시 (단, 비활성화된 것은 아니며 평일색을 변경할 수 있도록 유지)
-  if (dayOfWeek !== 0 && dayOfWeek !== 6) {
-    colorHex.textContent = colorTheme.value.toUpperCase();
-  } else {
-    colorHex.textContent = `${activeColor.toUpperCase()} (자동)`;
-  }
+  colorHex.textContent = activeColor.toUpperCase();
 }
 
 // --- 스타일 실시간 동기화 설정 ---
@@ -92,12 +77,7 @@ function setupStyleListeners() {
   // 상단 띠 색상 변경
   colorTheme.addEventListener('input', (e) => {
     colorHex.textContent = e.target.value.toUpperCase();
-    const date = new Date(inputDate.value);
-    const dayOfWeek = date.getDay();
-    // 평일일 때만 즉시 반영
-    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
-      document.documentElement.style.setProperty('--calendar-theme-color', e.target.value);
-    }
+    document.documentElement.style.setProperty('--calendar-theme-color', e.target.value);
   });
 
   // 폰트 종류 변경
