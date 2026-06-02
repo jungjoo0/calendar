@@ -460,7 +460,7 @@ body {
   font-family: 'HMFMold', sans-serif;
   /* 한자 및 숫자 폰트 HMFMold 지정 */
   font-size: 9cqw;
-  font-weight: 800;
+  font-weight: normal;
   color: #000;
   line-height: 1;
 }
@@ -482,7 +482,7 @@ body {
   font-family: 'HMFMold', sans-serif;
   /* 한자 및 숫자 폰트 HMFMold 지정 */
   font-size: 12cqw;
-  font-weight: 800;
+  font-weight: normal;
   color: #000;
   line-height: 1;
 }
@@ -501,7 +501,7 @@ body {
   font-family: 'HMFMold', sans-serif;
   /* 한자 및 숫자 폰트 HMFMold 지정 */
   font-size: 10.5cqw;
-  font-weight: 800;
+  font-weight: normal;
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
@@ -510,7 +510,7 @@ body {
   font-family: 'HMFMold', sans-serif;
   /* 한자 및 숫자 폰트 HMFMold 지정 */
   font-size: 5.8cqw;
-  font-weight: 700;
+  font-weight: normal;
   line-height: 1;
 }
 
