@@ -481,7 +481,7 @@ body {
 .day-of-week-box span {
   font-family: 'HMFMold', sans-serif;
   /* 한자 및 숫자 폰트 HMFMold 지정 */
-  font-size: 9.5cqw;
+  font-size: 12cqw;
   font-weight: 800;
   color: #000;
   line-height: 1;
